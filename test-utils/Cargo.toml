@@ -1,0 +1,39 @@
+[package]
+name = "test-utils"
+version = "0.1.0"
+publish = false
+edition = "2021"
+
+[lints.clippy]
+await_holding_refcell_ref = "allow"
+await_holding_lock = "allow"
+
+[dependencies]
+solana-logger = { workspace = true }
+solana-client = { workspace = true }
+solana-program = { workspace = true }
+solana-program-test = { workspace = true }
+solana-program-pack = { workspace = true }
+solana-sdk = { workspace = true }
+solana-rent = { workspace = true }
+solana-account = { workspace = true }
+spl-token-2022 = { workspace = true }
+spl-token = { workspace = true }
+spl-associated-token-account = { workspace = true }
+
+anchor-lang = { workspace = true }
+anchor-spl = { workspace = true }
+
+bytemuck = { workspace = true }
+
+anyhow = { workspace = true }
+once_cell = "1.10.0"
+bincode = "1.3.3"
+
+[dependencies.jup-stable]
+path = "../programs/jup-stable/"
+features = ["no-entrypoint"]
+
+[dependencies.psm]
+path = "../programs/psm/"
+features = ["no-entrypoint"]

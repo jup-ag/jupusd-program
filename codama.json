@@ -1,0 +1,12 @@
+{
+    "idl": "target/idl/jup_stable.json",
+    "before": [],
+    "scripts": {
+        "js": {
+            "from": "@codama/renderers-js",
+            "args": [
+                "packages/sdk/src/generated"
+            ]
+        }
+    }
+}

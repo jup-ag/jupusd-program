@@ -1,0 +1,42 @@
+{
+  "name": "jup-stable-sdk",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Jup Stable SDK",
+  "exports": {
+    "types": "./dist/index.d.ts",
+    "react-native": "./dist/index.react-native.mjs",
+    "browser": {
+      "import": "./dist/index.browser.mjs",
+      "require": "./dist/index.browser.cjs"
+    },
+    "node": {
+      "import": "./dist/index.node.mjs",
+      "require": "./dist/index.node.cjs"
+    }
+  },
+  "browser": {
+    "./dist/index.node.cjs": "./dist/index.browser.cjs",
+    "./dist/index.node.mjs": "./dist/index.browser.mjs"
+  },
+  "main": "./dist/index.node.cjs",
+  "module": "./dist/index.node.mjs",
+  "types": "./dist/index.d.ts",
+  "type": "commonjs",
+  "files": [
+    "./dist/*"
+  ],
+  "scripts": {
+    "build": "rimraf dist && tsup",
+    "lint": "eslint . && prettier --check .",
+    "lint:fix": "eslint --fix . && prettier --write ."
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.3",
+    "typescript": "5.8.2"
+  },
+  "dependencies": {
+    "@solana/kit": "^5.0.0",
+    "@solana-program/token": "^0.9.0"
+  }
+}
