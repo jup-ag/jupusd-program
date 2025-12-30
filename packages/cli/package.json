@@ -1,0 +1,36 @@
+{
+  "name": "jup-stable-cli",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "rimraf dist && tsup",
+    "start": "node dist/index.js",
+    "dev": "tsx src/index.ts",
+    "lint": "eslint src/",
+    "check-types": "tsc --noEmit"
+  },
+  "bin": {
+    "jup-stable": "dist/index.js"
+  },
+  "dependencies": {
+    "@oclif/core": "^4.6.2",
+    "@oclif/plugin-help": "^6.1.8",
+    "@solana-program/token": "^0.9.0",
+    "@solana/kit": "^5.0.0",
+    "@solana/web3.js": "^1.98.4",
+    "@sqds/multisig": "^2.1.4",
+    "bs58": "^6.0.0",
+    "jup-stable-sdk": "workspace:*",
+    "pino": "^9.4.0",
+    "pino-pretty": "^11.2.2"
+  },
+  "devDependencies": {
+    "@types/bs58": "^5.0.0",
+    "@types/node": "^22.15.3",
+    "tsx": "^4.19.2",
+    "typescript": "5.8.2"
+  },
+  "oclif": {
+    "bin": "jup-stable"
+  }
+}

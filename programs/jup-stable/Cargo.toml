@@ -1,0 +1,45 @@
+[package]
+name = "jup-stable"
+version = "0.1.0"
+description = "Created with Anchor"
+edition = "2021"
+
+[lints.clippy]
+await_holding_refcell_ref = "allow"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "jup_stable"
+
+[features]
+default = []
+cpi = ["no-entrypoint"]
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+idl-build = ["anchor-lang/idl-build", "anchor-spl/idl-build"]
+anchor-debug = []
+custom-heap = []
+custom-panic = []
+
+[dependencies]
+anchor-lang = { workspace = true, features=["event-cpi", "init-if-needed"] }
+anchor-spl = { workspace = true }
+bytemuck = { workspace = true }
+static_assertions = { workspace = true }
+solana-security-txt = { workspace = true }
+
+doves = { git = "ssh://git@github.com/TeamRaccoons/doves-tibo.git", branch = "anchor-v0.32.1", features = ["no-entrypoint"] }
+pyth-solana-receiver-sdk = "1.1.0"
+switchboard-on-demand = "0.9.3"
+rust_decimal = { version = "*", features = ["maths"] }
+
+[dev-dependencies]
+solana-program-test = { workspace = true }
+solana-sdk = { workspace = true }
+solana-instruction = { workspace = true }
+spl-token = { workspace = true }
+spl-associated-token-account = { workspace = true }
+anyhow = { workspace = true }
+hex-literal = { workspace = true }
+fixtures = { path = "../../test-utils", package = "test-utils" }

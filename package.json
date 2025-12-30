@@ -1,0 +1,33 @@
+{
+	"name": "jup-stable-monorepo",
+  "private": true,
+  "scripts": {
+    "build": "turbo run build",
+    "clean": "turbo run clean",
+    "dev": "turbo run dev",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "check-types": "turbo run check-types",
+    "codama": "codama run --all"
+  },
+  "devDependencies": {
+		"@codama/nodes-from-anchor": "^1.2.9",
+		"@codama/renderers-js": "^1.4.3",
+		"@codama/renderers-rust": "^1.2.7",
+		"codama": "^1.3.7",
+    "@solana/eslint-config-solana": "^5.0.0",
+    "@solana/prettier-config-solana": "0.0.5",
+    "@types/node": "^24",
+    "eslint": "^9.39.1",
+    "prettier": "^3.6.2",
+    "rimraf": "6.1.0",
+    "tsup": "^8.5.0",
+    "turbo": "^2.6.0",
+    "typescript": "^5.9.3"
+  },
+  "packageManager": "pnpm@10.20.0",
+  "engines": {
+    "node": ">=24"
+  }
+}
