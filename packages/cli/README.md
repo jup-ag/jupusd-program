@@ -79,6 +79,37 @@ jup-stable create-benefactor \
 
 ---
 
+### Create Benefactor with Limits (Multisig)
+
+Create a benefactor with fees, period limits, and enable it using Squad's Multisig:
+
+```bash
+jup-stable create-benefactor-with-limits-multisig \
+ --multisig=<multisig_pubkey> \
+ --benefactor-authority=<pubkey> \
+ --mint-fee-rate=25 \
+ --redeem-fee-rate=25 \
+ --hourly-max-mint=1000000000000 \
+ --hourly-max-redeem=1000000000000 \
+ --daily-max-mint=24000000000000 \
+ --daily-max-redeem=24000000000000
+```
+
+**Parameters:**
+
+- `--multisig`: Base58 address of the Squad's multisig program
+- `--benefactor-authority`: Base58 address of the authority that controls the benefactor PDA
+- `--mint-fee-rate`: Mint fee rate in basis points (0-10000)
+- `--redeem-fee-rate`: Redeem fee rate in basis points (0-10000)
+- `--hourly-max-mint`: (Optional) Maximum mint amount (raw units) per hour
+- `--hourly-max-redeem`: (Optional) Maximum redeem amount (raw units) per hour
+- `--daily-max-mint`: (Optional) Maximum daily mint amount (raw units) per day
+- `--daily-max-redeem`: (Optional) Maximum redeem amount (raw units) per day
+
+**Note:** This command automatically enables the benefactor after creation. The transaction is queued in the multisig and requires approval from the configured signers.
+
+---
+
 ### Update Benefactor
 
 Manage an existing benefactor:

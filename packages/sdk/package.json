@@ -1,8 +1,18 @@
 {
-  "name": "jup-stable-sdk",
-  "version": "0.1.0",
-  "private": true,
-  "description": "Jup Stable SDK",
+  "name": "@jup-ag/jupusd-sdk",
+  "version": "0.1.2",
+  "description": "JupUSD SDK",
+  "homepage": "https://github.com/jup-ag/jupusd-program/tree/main/packages/sdk",
+  "bugs": {
+    "url": "https://github.com/jup-ag/jupusd-program/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jup-ag/jupusd-program.git"
+  },
+  "license": "BSL-1.0",
+  "author": "",
+  "type": "commonjs",
   "exports": {
     "types": "./dist/index.d.ts",
     "react-native": "./dist/index.react-native.mjs",
@@ -15,14 +25,12 @@
       "require": "./dist/index.node.cjs"
     }
   },
+  "main": "./dist/index.node.cjs",
   "browser": {
     "./dist/index.node.cjs": "./dist/index.browser.cjs",
     "./dist/index.node.mjs": "./dist/index.browser.mjs"
   },
-  "main": "./dist/index.node.cjs",
-  "module": "./dist/index.node.mjs",
   "types": "./dist/index.d.ts",
-  "type": "commonjs",
   "files": [
     "./dist/*"
   ],
@@ -31,12 +39,13 @@
     "lint": "eslint . && prettier --check .",
     "lint:fix": "eslint --fix . && prettier --write ."
   },
+  "dependencies": {
+    "@solana/kit": "^5.0.0",
+    "@solana-program/token": "^0.9.0"
+  },
   "devDependencies": {
     "@types/node": "^22.15.3",
     "typescript": "5.8.2"
   },
-  "dependencies": {
-    "@solana/kit": "^5.0.0",
-    "@solana-program/token": "^0.9.0"
-  }
+  "module": "./dist/index.node.mjs"
 }

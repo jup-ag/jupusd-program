@@ -14,8 +14,8 @@ import {
   setTransactionMessageFeePayerSigner,
   setTransactionMessageLifetimeUsingBlockhash,
 } from "@solana/kit";
-import { getCreateOperatorInstructionAsync } from "jup-stable-sdk";
-import { findOperator } from "jup-stable-sdk";
+import { getCreateOperatorInstructionAsync } from "jupusd-sdk";
+import { findOperator } from "jupusd-sdk";
 import { OPERATOR_ROLE_NAMES, parseOperatorRoleFlag } from "../utils/operator";
 import * as multisig from "@sqds/multisig";
 import { PublicKey, VersionedTransaction } from "@solana/web3.js";

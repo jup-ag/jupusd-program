@@ -23,8 +23,8 @@ import {
   fetchVault,
   getMintInstructionAsync,
   JUP_STABLE_PROGRAM_ADDRESS,
-} from "jup-stable-sdk";
-import { findBenefactor, findConfig, findVault } from "jup-stable-sdk";
+} from "jupusd-sdk";
+import { findBenefactor, findConfig, findVault } from "jupusd-sdk";
 import {
   findAssociatedTokenPda,
   getCreateAssociatedTokenIdempotentInstructionAsync,

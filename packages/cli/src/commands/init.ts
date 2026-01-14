@@ -25,7 +25,7 @@ import {
 import {
   getInitInstructionAsync,
   JUP_STABLE_PROGRAM_ADDRESS,
-} from "jup-stable-sdk";
+} from "jupusd-sdk";
 
 export default class Init extends BaseCommand {
   static summary = "Initialize The Jupiter Stable Program.";

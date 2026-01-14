@@ -15,7 +15,7 @@ import {
 } from "@solana/kit";
 import BaseCommand from "../base-command";
 import { parseAddressFlag } from "../utils/common";
-import { findOperator, getDeleteOperatorInstruction } from "jup-stable-sdk";
+import { findOperator, getDeleteOperatorInstruction } from "jupusd-sdk";
 import { createInterface } from "node:readline/promises";
 import { stdin as input, stdout as output } from "node:process";
 

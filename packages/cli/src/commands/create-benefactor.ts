@@ -15,9 +15,9 @@ import {
   setTransactionMessageLifetimeUsingBlockhash,
   signTransactionMessageWithSigners,
 } from "@solana/kit";
-import { getCreateBenefactorInstructionAsync } from "jup-stable-sdk";
+import { getCreateBenefactorInstructionAsync } from "jupusd-sdk";
 import { parseBenefactorFeeRateFlag } from "../utils/benefactor";
-import { findBenefactor, findOperator } from "jup-stable-sdk";
+import { findBenefactor, findOperator } from "jupusd-sdk";
 
 type CreateBenefactorFlagInput = Interfaces.InferredFlags<
   typeof CreateBenefactor.flags

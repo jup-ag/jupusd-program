@@ -3,7 +3,7 @@
 Monorepo for the **JupUSD** mint & redeem Solana program and tooling:
 
 - **Onchain program (Anchor)**: `jup-stable`
-- **TypeScript SDK**: `jup-stable-sdk` (generated + quote helpers)
+- **TypeScript SDK**: `jupusd-sdk` (generated + quote helpers)
 - **CLI**: `jup-stable` (admin/operator workflows)
 
 ## Repository layout
@@ -11,7 +11,7 @@ Monorepo for the **JupUSD** mint & redeem Solana program and tooling:
 - `programs/`
   - `jup-stable/`: core stablecoin program
 - `packages/`
-  - `sdk/`: `jup-stable-sdk` (generated clients + quote utilities)
+  - `sdk/`: `jupusd-sdk` (generated clients + quote utilities)
   - `cli/`: `jup-stable-cli` (ships the `jup-stable` binary)
 - `test-utils/`: shared Rust test helpers/fixtures
 - `Anchor.toml`: Anchor workspace + localnet program IDs
@@ -56,7 +56,7 @@ pnpm run codama
 
 ## Packages
 
-### SDK (`jup-stable-sdk`)
+### SDK (`jupusd-sdk`)
 
 Located at `packages/sdk`. It bundles:
 
@@ -72,4 +72,3 @@ Located at `packages/cli`. The CLI is built with oclif and exposes admin/operato
 ## License
 
 See `LICENSE`.
-

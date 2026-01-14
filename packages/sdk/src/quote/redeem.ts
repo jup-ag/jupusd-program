@@ -42,13 +42,10 @@ export function getRedeemQuote(input: RedeemQuoteInput): RedeemQuote {
     throw new Error("oraclePriceUsd must be greater than zero");
   }
 
-  const minOraclePrice =
-    toBigInt(input.vault.minOraclePriceUsd) *
-    10n ** BigInt(ORACLE_PRICE_DECIMALS - PEG_PRICE_DECIMALS);
   const maxOraclePrice =
     toBigInt(input.vault.maxOraclePriceUsd) *
     10n ** BigInt(ORACLE_PRICE_DECIMALS - PEG_PRICE_DECIMALS);
-  if (oraclePriceUsd < minOraclePrice || oraclePriceUsd > maxOraclePrice) {
+  if (oraclePriceUsd > maxOraclePrice) {
     throw new Error(
       "oraclePriceUsd is outside of the vault's configured bounds",
     );

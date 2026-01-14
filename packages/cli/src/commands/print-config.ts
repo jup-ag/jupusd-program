@@ -1,6 +1,6 @@
 import BaseCommand from "../base-command";
-import { fetchConfig, type PeriodLimit } from "jup-stable-sdk";
-import { findConfig } from "jup-stable-sdk";
+import { fetchConfig, type PeriodLimit } from "jupusd-sdk";
+import { findConfig } from "jupusd-sdk";
 
 const PEG_PRICE_DECIMALS = 4;
 type ConfigAccount = Awaited<ReturnType<typeof fetchConfig>>;

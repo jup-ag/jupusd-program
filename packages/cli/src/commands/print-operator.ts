@@ -1,8 +1,8 @@
 import { Flags } from "@oclif/core";
 import BaseCommand from "../base-command";
-import { fetchOperator, OperatorStatus } from "jup-stable-sdk";
+import { fetchOperator, OperatorStatus } from "jupusd-sdk";
 import { parseAddressFlag } from "../utils/common";
-import { findOperator } from "jup-stable-sdk";
+import { findOperator } from "jupusd-sdk";
 import { OPERATOR_ROLE_NAMES } from "../utils/operator";
 
 type OperatorAccount = Awaited<ReturnType<typeof fetchOperator>>;

@@ -15,8 +15,8 @@ import {
 } from "@solana/kit";
 import BaseCommand from "../base-command";
 import { parseAddressFlag } from "../utils/common";
-import { findBenefactor, findOperator } from "jup-stable-sdk";
-import { getDeleteBenefactorInstruction } from "jup-stable-sdk";
+import { findBenefactor, findOperator } from "jupusd-sdk";
+import { getDeleteBenefactorInstruction } from "jupusd-sdk";
 import { createInterface } from "node:readline/promises";
 import { stdin as input, stdout as output } from "node:process";
 

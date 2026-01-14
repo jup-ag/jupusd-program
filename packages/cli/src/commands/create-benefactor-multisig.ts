@@ -14,9 +14,9 @@ import {
   setTransactionMessageFeePayerSigner,
   setTransactionMessageLifetimeUsingBlockhash,
 } from "@solana/kit";
-import { getCreateBenefactorInstructionAsync } from "jup-stable-sdk";
+import { getCreateBenefactorInstructionAsync } from "jupusd-sdk";
 import { parseBenefactorFeeRateFlag } from "../utils/benefactor";
-import { findBenefactor, findOperator } from "jup-stable-sdk";
+import { findBenefactor, findOperator } from "jupusd-sdk";
 import * as multisig from "@sqds/multisig";
 import { PublicKey, VersionedTransaction } from "@solana/web3.js";
 

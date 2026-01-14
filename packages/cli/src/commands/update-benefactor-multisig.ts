@@ -15,13 +15,13 @@ import {
 import {
   getManageBenefactorInstruction,
   type BenefactorManagementActionArgs,
-} from "jup-stable-sdk";
+} from "jupusd-sdk";
 import { parseAddressFlag, parseU64StringFlag } from "../utils/common";
 import {
   parseBenefactorFeeRateFlag,
   parseBenefactorStatusFlag,
 } from "../utils/benefactor";
-import { findBenefactor, findOperator } from "jup-stable-sdk";
+import { findBenefactor, findOperator } from "jupusd-sdk";
 import * as multisig from "@sqds/multisig";
 import { PublicKey, VersionedTransaction } from "@solana/web3.js";
 

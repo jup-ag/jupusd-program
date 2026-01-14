@@ -4,7 +4,7 @@ import {
   JUP_STABLE_PROGRAM_ADDRESS,
   OPERATOR_DISCRIMINATOR,
   OperatorStatus,
-} from "jup-stable-sdk";
+} from "jupusd-sdk";
 import { OPERATOR_ROLE_NAMES } from "../utils/operator";
 import { Base64EncodedBytes } from "@solana/kit";
 
