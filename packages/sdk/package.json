@@ -1,6 +1,6 @@
 {
   "name": "@jup-ag/jupusd-sdk",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "JupUSD SDK",
   "homepage": "https://github.com/jup-ag/jupusd-program/tree/main/packages/sdk",
   "bugs": {
