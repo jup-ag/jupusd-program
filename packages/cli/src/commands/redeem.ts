@@ -23,13 +23,13 @@ import {
   fetchVault,
   getRedeemInstructionAsync,
   JUP_STABLE_PROGRAM_ADDRESS,
-} from "jup-stable-sdk";
+} from "jupusd-sdk";
 import {
   findBenefactor,
   findConfig,
   findVault,
   findVaultTokenAccount,
-} from "jup-stable-sdk";
+} from "jupusd-sdk";
 import {
   findAssociatedTokenPda,
   getCreateAssociatedTokenIdempotentInstructionAsync,

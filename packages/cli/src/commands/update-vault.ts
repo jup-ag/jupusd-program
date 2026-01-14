@@ -21,10 +21,10 @@ import {
   vaultManagementAction,
   type OracleConfigArgs,
   type VaultManagementActionArgs,
-} from "jup-stable-sdk";
+} from "jupusd-sdk";
 import { parseAddressFlag } from "../utils/common";
 import { parseBooleanFlag, parseU64StringFlag } from "../utils/common";
-import { findOperator, findVault } from "jup-stable-sdk";
+import { findOperator, findVault } from "jupusd-sdk";
 
 const VAULT_ACTION_OPTIONS = [
   "disable",

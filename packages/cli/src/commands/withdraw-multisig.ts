@@ -19,13 +19,13 @@ import {
   fetchConfig,
   fetchVault,
   getWithdrawInstruction,
-} from "jup-stable-sdk";
+} from "jupusd-sdk";
 import {
   findAssociatedTokenPda,
   getCreateAssociatedTokenIdempotentInstructionAsync,
   TOKEN_PROGRAM_ADDRESS,
 } from "@solana-program/token";
-import { findConfig, findOperator, findVault } from "jup-stable-sdk";
+import { findConfig, findOperator, findVault } from "jupusd-sdk";
 import * as multisig from "@sqds/multisig";
 import { PublicKey, VersionedTransaction } from "@solana/web3.js";
 

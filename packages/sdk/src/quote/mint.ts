@@ -46,10 +46,7 @@ export function getMintQuote(input: MintQuoteInput): MintQuote {
   const minOraclePrice =
     toBigInt(input.vault.minOraclePriceUsd) *
     10n ** BigInt(ORACLE_PRICE_DECIMALS - PEG_PRICE_DECIMALS);
-  const maxOraclePrice =
-    toBigInt(input.vault.maxOraclePriceUsd) *
-    10n ** BigInt(ORACLE_PRICE_DECIMALS - PEG_PRICE_DECIMALS);
-  if (oraclePriceUsd < minOraclePrice || oraclePriceUsd > maxOraclePrice) {
+  if (oraclePriceUsd < minOraclePrice) {
     throw new Error(
       "oraclePriceUsd is outside of the vault's configured bounds",
     );

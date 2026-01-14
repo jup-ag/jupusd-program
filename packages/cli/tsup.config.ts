@@ -4,6 +4,7 @@ export default defineConfig({
   entry: [
     "src/index.ts",
     "src/commands/create-benefactor-multisig.ts",
+    "src/commands/create-benefactor-with-limits-multisig.ts",
     "src/commands/create-benefactor.ts",
     "src/commands/create-operator-multisig.ts",
     "src/commands/create-operator.ts",

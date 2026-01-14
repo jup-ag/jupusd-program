@@ -1,4 +1,4 @@
-import { BenefactorStatus } from "jup-stable-sdk";
+import { BenefactorStatus } from "jupusd-sdk";
 import { parseBooleanFlag } from "./common";
 
 export type BenefactorStatusName = "active" | "disabled";

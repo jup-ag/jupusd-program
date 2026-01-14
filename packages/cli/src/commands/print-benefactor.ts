@@ -5,9 +5,9 @@ import {
   fetchBenefactor,
   BenefactorStatus,
   type PeriodLimit,
-} from "jup-stable-sdk";
+} from "jupusd-sdk";
 import { parseAddressFlag } from "../utils/common";
-import { findBenefactor } from "jup-stable-sdk";
+import { findBenefactor } from "jupusd-sdk";
 
 type BenefactorAccount = Awaited<ReturnType<typeof fetchBenefactor>>;
 

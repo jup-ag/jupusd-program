@@ -1,4 +1,4 @@
-import { OperatorRole, OperatorStatus } from "jup-stable-sdk";
+import { OperatorRole, OperatorStatus } from "jupusd-sdk";
 import { parseBooleanFlag } from "./common";
 
 export const OPERATOR_SEED = "operator";
@@ -17,7 +17,7 @@ export const OPERATOR_ROLE_NAMES = [
 
 export type OperatorRoleName = (typeof OPERATOR_ROLE_NAMES)[number];
 
-const ROLE_NAME_TO_ROLE: Record<OperatorRoleName, OperatorRole> = {
+export const ROLE_NAME_TO_ROLE: Record<OperatorRoleName, OperatorRole> = {
   admin: OperatorRole.Admin,
   "period-manager": OperatorRole.PeriodManager,
   "global-disabler": OperatorRole.GlobalDisabler,

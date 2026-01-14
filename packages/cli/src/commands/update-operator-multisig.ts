@@ -26,8 +26,8 @@ import {
   type OperatorManagementActionArgs,
   OperatorRole,
   OperatorStatus,
-} from "jup-stable-sdk";
-import { findOperator } from "jup-stable-sdk";
+} from "jupusd-sdk";
+import { findOperator } from "jupusd-sdk";
 import * as multisig from "@sqds/multisig";
 import { PublicKey, VersionedTransaction } from "@solana/web3.js";
 

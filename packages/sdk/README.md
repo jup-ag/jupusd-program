@@ -11,9 +11,9 @@ The program IDL is available onchain: [Program IDL (Solscan)](https://solscan.io
 ## Installation
 
 ```sh
-pnpm add jup-stable-sdk @solana/kit
+pnpm add @jup-ag/jupusd-sdk @solana/kit
 # or
-npm install jup-stable-sdk @solana/kit
+npm install @jup-ag/jupusd-sdk @solana/kit
 ```
 
 ## Getting Started
@@ -24,7 +24,7 @@ The generated account helpers fetch and decode data into ergonomic TypeScript
 types.
 
 ```ts
-import { fetchConfig, fetchVault, fetchBenefactor } from "jup-stable-sdk";
+import { fetchConfig, fetchVault, fetchBenefactor } from "jupusd-sdk";
 
 const [config, vault, benefactor] = await Promise.all([
   fetchConfig(rpc, configAddress),
@@ -39,7 +39,7 @@ Quotes expect oracle prices in base units with `QUOTE_PRICE_DECIMALS` (8
 decimals). The helper below matches the conversion used by the API service.
 
 ```ts
-import { QUOTE_PRICE_DECIMALS } from "jup-stable-sdk";
+import { QUOTE_PRICE_DECIMALS } from "jupusd-sdk";
 
 function convertPythPriceToBigInt(price: { price: string; expo: number }) {
   const raw = BigInt(price.price);
@@ -57,7 +57,7 @@ function convertPythPriceToBigInt(price: { price: string; expo: number }) {
 ### 3. Produce mint and redeem quotes
 
 ```ts
-import { getMintQuote, getRedeemQuote } from "jup-stable-sdk";
+import { getMintQuote, getRedeemQuote } from "jupusd-sdk";
 
 const amountIn = 1_000_000_000n; // 1,000 USDC with 6 decimals
 const oraclePriceUsd = convertPythPriceToBigInt(latestPythPrice);
@@ -108,7 +108,7 @@ import {
   getMintInstructionAsync,
   getRedeemInstructionAsync,
   JUP_STABLE_PROGRAM_ADDRESS,
-} from "jup-stable-sdk";
+} from "jupusd-sdk";
 import { findAssociatedTokenPda } from "@solana-program/token";
 
 const userSigner = createNoopSigner(userAddress);
@@ -208,7 +208,7 @@ import {
   findOperator,
   findVault,
   findVaultTokenAccount,
-} from "jup-stable-sdk";
+} from "jupusd-sdk";
 
 const [configAddress, vaultAddress, benefactorAddress] = await Promise.all([
   findConfig(),
