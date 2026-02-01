@@ -14,9 +14,9 @@ import {
   setTransactionMessageLifetimeUsingBlockhash,
   signTransactionMessageWithSigners,
 } from "@solana/kit";
-import { getManageConfigInstruction } from "jupusd-sdk";
+import { getManageConfigInstruction } from "@jup-ag/jupusd-sdk";
 import { parseBooleanFlag, parseU64StringFlag } from "../utils/common";
-import { findConfig, findOperator } from "jupusd-sdk";
+import { findConfig, findOperator } from "@jup-ag/jupusd-sdk";
 
 const PEG_PRICE_DECIMALS = 4;
 

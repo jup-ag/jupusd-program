@@ -22,13 +22,13 @@ import {
   fetchVault,
   getMintInstructionAsync,
   JUP_STABLE_PROGRAM_ADDRESS,
-} from "jupusd-sdk";
+} from "@jup-ag/jupusd-sdk";
 import {
   findAssociatedTokenPda,
   getCreateAssociatedTokenIdempotentInstructionAsync,
   TOKEN_PROGRAM_ADDRESS,
 } from "@solana-program/token";
-import { findBenefactor, findConfig, findVault } from "jupusd-sdk";
+import { findBenefactor, findConfig, findVault } from "@jup-ag/jupusd-sdk";
 import * as multisig from "@sqds/multisig";
 import { PublicKey, VersionedTransaction } from "@solana/web3.js";
 

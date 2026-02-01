@@ -14,7 +14,7 @@ import {
   setTransactionMessageFeePayerSigner,
   setTransactionMessageLifetimeUsingBlockhash,
 } from "@solana/kit";
-import { findOperator, getDeleteOperatorInstruction } from "jupusd-sdk";
+import { findOperator, getDeleteOperatorInstruction } from "@jup-ag/jupusd-sdk";
 import * as multisig from "@sqds/multisig";
 import { PublicKey, VersionedTransaction } from "@solana/web3.js";
 

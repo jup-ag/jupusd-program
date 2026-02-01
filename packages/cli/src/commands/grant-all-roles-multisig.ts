@@ -12,7 +12,7 @@ import {
 import { PublicKey, VersionedTransaction } from "@solana/web3.js";
 import * as multisig from "@sqds/multisig";
 import bs58 from "bs58";
-import { findOperator, getManageOperatorInstruction } from "jupusd-sdk";
+import { findOperator, getManageOperatorInstruction } from "@jup-ag/jupusd-sdk";
 
 import BaseCommand from "../base-command";
 import { parseAddressFlag } from "../utils/common";

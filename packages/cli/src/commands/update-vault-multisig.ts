@@ -20,13 +20,13 @@ import {
   vaultManagementAction,
   type OracleConfigArgs,
   type VaultManagementActionArgs,
-} from "jupusd-sdk";
+} from "@jup-ag/jupusd-sdk";
 import {
   parseAddressFlag,
   parseBooleanFlag,
   parseU64StringFlag,
 } from "../utils/common";
-import { findOperator, findVault } from "jupusd-sdk";
+import { findOperator, findVault } from "@jup-ag/jupusd-sdk";
 import * as multisig from "@sqds/multisig";
 import { PublicKey, VersionedTransaction } from "@solana/web3.js";
 

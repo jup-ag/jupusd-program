@@ -19,7 +19,7 @@ import {
   findBenefactor,
   findOperator,
   BenefactorStatus,
-} from "jupusd-sdk";
+} from "@jup-ag/jupusd-sdk";
 import { parseBenefactorFeeRateFlag } from "../utils/benefactor";
 import * as multisig from "@sqds/multisig";
 import { PublicKey, VersionedTransaction } from "@solana/web3.js";
