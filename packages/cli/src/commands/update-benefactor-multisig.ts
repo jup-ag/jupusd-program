@@ -115,12 +115,6 @@ This command creates a Squad's Multisig transaction that updates an existing ben
       parse: async (input) => input.trim(),
       required: false,
     }),
-    "use-multisig-as-authority": Flags.boolean({
-      default: false,
-      description:
-        "Use the multisig address directly as the operator authority instead of deriving a vault PDA.",
-      required: false,
-    }),
   } satisfies Interfaces.FlagInput;
 
   async run(): Promise<void> {
@@ -129,17 +123,12 @@ This command creates a Squad's Multisig transaction that updates an existing ben
     this.configureRpcClients();
 
     const multisigPublicKey = new PublicKey(flags["multisig"]);
+    const [vaultPda] = multisig.getVaultPda({
+      index: 0,
+      multisigPda: multisigPublicKey,
+    });
 
-    let multisigAuthority;
-    if (flags["use-multisig-as-authority"]) {
-      multisigAuthority = createNoopSigner(address(multisigPublicKey.toBase58()));
-    } else {
-      const [vaultPda] = multisig.getVaultPda({
-        index: 0,
-        multisigPda: multisigPublicKey,
-      });
-      multisigAuthority = createNoopSigner(address(vaultPda.toBase58()));
-    }
+    const multisigAuthority = createNoopSigner(address(vaultPda.toBase58()));
 
     const benefactorAuthority = parseAddressFlag(
       flags["benefactor-authority"],
