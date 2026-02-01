@@ -1,4 +1,4 @@
-import { OperatorRole, OperatorStatus } from "jupusd-sdk";
+import { OperatorRole, OperatorStatus } from "@jup-ag/jupusd-sdk";
 import { parseBooleanFlag } from "./common";
 
 export const OPERATOR_SEED = "operator";

@@ -14,13 +14,13 @@ import {
   setTransactionMessageFeePayerSigner,
   setTransactionMessageLifetimeUsingBlockhash,
 } from "@solana/kit";
-import { fetchConfig, getCreateVaultInstructionAsync } from "jupusd-sdk";
+import { fetchConfig, getCreateVaultInstructionAsync } from "@jup-ag/jupusd-sdk";
 import {
   findConfig,
   findOperator,
   findVault,
   findVaultTokenAccount,
-} from "jupusd-sdk";
+} from "@jup-ag/jupusd-sdk";
 import * as multisig from "@sqds/multisig";
 import { PublicKey, VersionedTransaction } from "@solana/web3.js";
 

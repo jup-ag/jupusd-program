@@ -22,7 +22,7 @@ import {
   fetchBenefactor,
   getRedeemInstructionAsync,
   JUP_STABLE_PROGRAM_ADDRESS,
-} from "jupusd-sdk";
+} from "@jup-ag/jupusd-sdk";
 import {
   findAssociatedTokenPda,
   getCreateAssociatedTokenIdempotentInstructionAsync,
@@ -33,7 +33,7 @@ import {
   findConfig,
   findVault,
   findVaultTokenAccount,
-} from "jupusd-sdk";
+} from "@jup-ag/jupusd-sdk";
 import * as multisig from "@sqds/multisig";
 import { PublicKey, VersionedTransaction } from "@solana/web3.js";
 

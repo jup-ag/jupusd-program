@@ -6,9 +6,9 @@ import {
   VaultStatus,
   type OracleType,
   type PeriodLimit,
-} from "jupusd-sdk";
+} from "@jup-ag/jupusd-sdk";
 import { parseAddressFlag } from "../utils/common";
-import { findVaultTokenAccount, findVault } from "jupusd-sdk";
+import { findVaultTokenAccount, findVault } from "@jup-ag/jupusd-sdk";
 
 type VaultAccount = Awaited<ReturnType<typeof fetchVault>>;
 

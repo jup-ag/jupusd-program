@@ -1,6 +1,9 @@
+import {
+  type BenefactorManagementActionArgs,
+  getManageBenefactorInstruction,
+} from "@jup-ag/jupusd-sdk";
+import { findBenefactor, findOperator } from "@jup-ag/jupusd-sdk";
 import { Flags, Interfaces } from "@oclif/core";
-import BaseCommand from "../base-command";
-import bs58 from "bs58";
 import {
   address,
   appendTransactionMessageInstruction,
@@ -12,18 +15,16 @@ import {
   setTransactionMessageFeePayerSigner,
   setTransactionMessageLifetimeUsingBlockhash,
 } from "@solana/kit";
-import {
-  getManageBenefactorInstruction,
-  type BenefactorManagementActionArgs,
-} from "jupusd-sdk";
-import { parseAddressFlag, parseU64StringFlag } from "../utils/common";
+import { PublicKey, VersionedTransaction } from "@solana/web3.js";
+import * as multisig from "@sqds/multisig";
+import bs58 from "bs58";
+
+import BaseCommand from "../base-command";
 import {
   parseBenefactorFeeRateFlag,
   parseBenefactorStatusFlag,
 } from "../utils/benefactor";
-import { findBenefactor, findOperator } from "jupusd-sdk";
-import * as multisig from "@sqds/multisig";
-import { PublicKey, VersionedTransaction } from "@solana/web3.js";
+import { parseAddressFlag, parseU64StringFlag } from "../utils/common";
 
 const BENEFACTOR_ACTION_OPTIONS = [
   "disable",
@@ -41,8 +42,8 @@ type UpdateBenefactorFlagInput = Interfaces.InferredFlags<
 
 type ParsedActionResult = {
   action: BenefactorManagementActionArgs;
-  summary: string;
   details: Record<string, string>;
+  summary: string;
 };
 
 export default class UpdateBenefactorMultisig extends BaseCommand {
@@ -54,65 +55,71 @@ This command creates a Squad's Multisig transaction that updates an existing ben
 
   static flags = {
     ...BaseCommand.flags,
-    multisig: Flags.string({
-      description: "Base58 address of the multisig program.",
+    action: Flags.string({
+      description:
+        "Benefactor management action to perform. Provide multiple times to queue several actions.",
+      multiple: true,
+      options: [...BENEFACTOR_ACTION_OPTIONS],
       required: true,
-      parse: async (input) => input.trim(),
     }),
     "benefactor-authority": Flags.string({
       description:
         "Base58 address of the authority that controls the benefactor PDA to manage.",
-      required: true,
       parse: async (input) => input.trim(),
-    }),
-    action: Flags.string({
-      description:
-        "Benefactor management action to perform. Provide multiple times to queue several actions.",
       required: true,
-      multiple: true,
-      options: [...BENEFACTOR_ACTION_OPTIONS],
-    }),
-    status: Flags.string({
-      description:
-        "Desired status for the benefactor (set-status action). Accepts values such as active/disabled, enabled/disabled, or true/false.",
-      required: false,
-      parse: async (input) => input.trim(),
-    }),
-    "mint-fee-rate": Flags.integer({
-      description: "Mint fee rate in basis points (update-fee-rates action).",
-      required: false,
-      min: 0,
-      max: 10000,
-    }),
-    "redeem-fee-rate": Flags.integer({
-      description: "Redeem fee rate in basis points (update-fee-rates action).",
-      required: false,
-      min: 0,
-      max: 10000,
-    }),
-    index: Flags.integer({
-      description:
-        "Index used by update-period-limit and reset-period-limit actions.",
-      required: false,
-      min: 0,
     }),
     "duration-seconds": Flags.string({
       description:
         "Rolling window duration in seconds (update-period-limit action).",
-      required: false,
       parse: async (input) => input.trim(),
+      required: false,
+    }),
+    index: Flags.integer({
+      description:
+        "Index used by update-period-limit and reset-period-limit actions.",
+      min: 0,
+      required: false,
     }),
     "max-mint-amount": Flags.string({
       description:
         "Maximum mint amount (raw units) for the specified period limit (update-period-limit action).",
-      required: false,
       parse: async (input) => input.trim(),
+      required: false,
     }),
     "max-redeem-amount": Flags.string({
       description:
         "Maximum redeem amount (raw units) for the specified period limit (update-period-limit action).",
-      required: false,
       parse: async (input) => input.trim(),
+      required: false,
+    }),
+    "mint-fee-rate": Flags.integer({
+      description: "Mint fee rate in basis points (update-fee-rates action).",
+      max: 10000,
+      min: 0,
+      required: false,
+    }),
+    multisig: Flags.string({
+      description: "Base58 address of the multisig program.",
+      parse: async (input) => input.trim(),
+      required: true,
+    }),
+    "redeem-fee-rate": Flags.integer({
+      description: "Redeem fee rate in basis points (update-fee-rates action).",
+      max: 10000,
+      min: 0,
+      required: false,
+    }),
+    status: Flags.string({
+      description:
+        "Desired status for the benefactor (set-status action). Accepts values such as active/disabled, enabled/disabled, or true/false.",
+      parse: async (input) => input.trim(),
+      required: false,
+    }),
+    "use-multisig-as-authority": Flags.boolean({
+      default: false,
+      description:
+        "Use the multisig address directly as the operator authority instead of deriving a vault PDA.",
+      required: false,
     }),
   } satisfies Interfaces.FlagInput;
 
@@ -122,12 +129,17 @@ This command creates a Squad's Multisig transaction that updates an existing ben
     this.configureRpcClients();
 
     const multisigPublicKey = new PublicKey(flags["multisig"]);
-    const [vaultPda] = multisig.getVaultPda({
-      multisigPda: multisigPublicKey,
-      index: 0,
-    });
 
-    const multisigAuthority = createNoopSigner(address(vaultPda.toBase58()));
+    let multisigAuthority;
+    if (flags["use-multisig-as-authority"]) {
+      multisigAuthority = createNoopSigner(address(multisigPublicKey.toBase58()));
+    } else {
+      const [vaultPda] = multisig.getVaultPda({
+        index: 0,
+        multisigPda: multisigPublicKey,
+      });
+      multisigAuthority = createNoopSigner(address(vaultPda.toBase58()));
+    }
 
     const benefactorAuthority = parseAddressFlag(
       flags["benefactor-authority"],
@@ -162,10 +174,10 @@ This command creates a Squad's Multisig transaction that updates an existing ben
 
     const instructions = parsedActions.map((parsedAction) =>
       getManageBenefactorInstruction({
-        operatorAuthority: multisigAuthority,
-        operator: operatorAccount,
-        benefactor: benefactorAccount,
         action: parsedAction.action,
+        benefactor: benefactorAccount,
+        operator: operatorAccount,
+        operatorAuthority: multisigAuthority,
       }),
     );
 
@@ -207,8 +219,8 @@ This command creates a Squad's Multisig transaction that updates an existing ben
       case "disable":
         return {
           action: { __kind: "Disable" },
-          summary: "Disable benefactor",
           details: {},
+          summary: "Disable benefactor",
         };
 
       case "set-status": {
@@ -220,8 +232,8 @@ This command creates a Squad's Multisig transaction that updates an existing ben
         const parsed = parseBenefactorStatusFlag(statusRaw, "status");
         return {
           action: { __kind: "SetStatus", status: parsed.status },
-          summary: `Set benefactor status to ${parsed.name}`,
           details: { status: parsed.name },
+          summary: `Set benefactor status to ${parsed.name}`,
         };
       }
 
@@ -241,11 +253,11 @@ This command creates a Squad's Multisig transaction that updates an existing ben
             mintFeeRate,
             redeemFeeRate,
           },
-          summary: "Update benefactor fee rates",
           details: {
             "mint-fee-rate": `${mintFeeRate} bps`,
             "redeem-fee-rate": `${redeemFeeRate} bps`,
           },
+          summary: "Update benefactor fee rates",
         };
       }
 
@@ -287,18 +299,18 @@ This command creates a Squad's Multisig transaction that updates an existing ben
         return {
           action: {
             __kind: "UpdatePeriodLimit",
-            index: indexValue,
             durationSeconds,
+            index: indexValue,
             maxMintAmount,
             maxRedeemAmount,
           },
-          summary: `Update period limit at index ${indexValue}`,
           details: {
-            index: String(indexValue),
             "duration-seconds": durationSeconds.toString(),
+            index: String(indexValue),
             "max-mint-amount": maxMintAmount.toString(),
             "max-redeem-amount": maxRedeemAmount.toString(),
           },
+          summary: `Update period limit at index ${indexValue}`,
         };
       }
 
@@ -310,8 +322,8 @@ This command creates a Squad's Multisig transaction that updates an existing ben
 
         return {
           action: { __kind: "ResetPeriodLimit", index: indexValue },
-          summary: `Reset period limit at index ${indexValue}`,
           details: { index: String(indexValue) },
+          summary: `Reset period limit at index ${indexValue}`,
         };
       }
 

@@ -19,13 +19,13 @@ import {
   fetchConfig,
   fetchVault,
   getWithdrawInstruction,
-} from "jupusd-sdk";
+} from "@jup-ag/jupusd-sdk";
 import {
   findAssociatedTokenPda,
   getCreateAssociatedTokenIdempotentInstructionAsync,
   TOKEN_PROGRAM_ADDRESS,
 } from "@solana-program/token";
-import { findConfig, findOperator, findVault } from "jupusd-sdk";
+import { findConfig, findOperator, findVault } from "@jup-ag/jupusd-sdk";
 
 export default class Withdraw extends BaseCommand {
   static summary = "Withdraw collateral from a vault to its custodian.";

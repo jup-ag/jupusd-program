@@ -17,7 +17,7 @@ import {
   type OperatorManagementActionArgs,
   OperatorRole,
   OperatorStatus,
-} from "jupusd-sdk";
+} from "@jup-ag/jupusd-sdk";
 
 import BaseCommand from "../base-command";
 import {
@@ -27,7 +27,7 @@ import {
   parseOperatorRoleFlag,
   parseOperatorStatusFlag,
 } from "../utils/operator";
-import { findOperator } from "jupusd-sdk";
+import { findOperator } from "@jup-ag/jupusd-sdk";
 import { parseAddressFlag } from "../utils/common";
 
 type OperatorManagementActionInput =

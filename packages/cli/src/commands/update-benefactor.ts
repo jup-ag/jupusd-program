@@ -17,14 +17,14 @@ import BaseCommand from "../base-command";
 import {
   getManageBenefactorInstruction,
   type BenefactorManagementActionArgs,
-} from "jupusd-sdk";
+} from "@jup-ag/jupusd-sdk";
 import { parseAddressFlag } from "../utils/common";
 import {
   parseBenefactorFeeRateFlag,
   parseBenefactorStatusFlag,
 } from "../utils/benefactor";
 import { parseU64StringFlag } from "../utils/common";
-import { findBenefactor, findOperator } from "jupusd-sdk";
+import { findBenefactor, findOperator } from "@jup-ag/jupusd-sdk";
 
 const BENEFACTOR_ACTION_OPTIONS = [
   "disable",

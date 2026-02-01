@@ -1,13 +1,14 @@
+import {
+  BenefactorStatus,
+  fetchBenefactor,
+  type PeriodLimit,
+} from "@jup-ag/jupusd-sdk";
+import { findBenefactor } from "@jup-ag/jupusd-sdk";
 import { Flags } from "@oclif/core";
 import { ReadonlyUint8Array } from "@solana/kit";
+
 import BaseCommand from "../base-command";
-import {
-  fetchBenefactor,
-  BenefactorStatus,
-  type PeriodLimit,
-} from "jupusd-sdk";
 import { parseAddressFlag } from "../utils/common";
-import { findBenefactor } from "jupusd-sdk";
 
 type BenefactorAccount = Awaited<ReturnType<typeof fetchBenefactor>>;
 
@@ -22,8 +23,8 @@ This command derives the benefactor PDA for the provided authority and prints it
     ...BaseCommand.flags,
     authority: Flags.string({
       description: "Base58 address of the benefactor authority.",
-      required: true,
       parse: async (input) => input.trim(),
+      required: true,
     }),
   };
 

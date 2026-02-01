@@ -15,13 +15,13 @@ import {
   setTransactionMessageLifetimeUsingBlockhash,
   signTransactionMessageWithSigners,
 } from "@solana/kit";
-import { fetchConfig, getCreateVaultInstructionAsync } from "jupusd-sdk";
+import { fetchConfig, getCreateVaultInstructionAsync } from "@jup-ag/jupusd-sdk";
 import {
   findConfig,
   findOperator,
   findVaultTokenAccount,
   findVault,
-} from "jupusd-sdk";
+} from "@jup-ag/jupusd-sdk";
 
 type CreateVaultFlagInput = Interfaces.InferredFlags<typeof CreateVault.flags>;
 

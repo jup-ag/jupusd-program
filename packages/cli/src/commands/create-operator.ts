@@ -15,9 +15,9 @@ import {
   setTransactionMessageLifetimeUsingBlockhash,
   signTransactionMessageWithSigners,
 } from "@solana/kit";
-import { getCreateOperatorInstructionAsync } from "jupusd-sdk";
+import { getCreateOperatorInstructionAsync } from "@jup-ag/jupusd-sdk";
 import { OPERATOR_ROLE_NAMES, parseOperatorRoleFlag } from "../utils/operator";
-import { findOperator } from "jupusd-sdk";
+import { findOperator } from "@jup-ag/jupusd-sdk";
 
 type CreateOperatorFlagInput = Interfaces.InferredFlags<
   typeof CreateOperator.flags
